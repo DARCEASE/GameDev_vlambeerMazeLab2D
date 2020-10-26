@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
+//using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -34,33 +34,36 @@ public class FloorMaker : MonoBehaviour
 			{
 				transform.Rotate(0f, 0f, -90f);
 			}
-			else if (randNum >= 0.99f && randNum <= 1.0f) // Else if number is 0.99f-1.0f, then instantiate a floorMakerPrefab clone at my current position;
+			else if (randNum >= 0.95f && randNum <= 1.0f) // Else if number is 0.99f-1.0f, then instantiate a floorMakerPrefab clone at my current position;
 			{
 
 				Instantiate(floorMakerPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
 			}
 			//end elseIf
-
-		}
-
-		//Instantiate a floorPrefab clone at current position;
-		Instantiate(floorPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
-		//Move 1 unit "upwards" based on this object's local rotation (e.g. with rotation 0,0,0 "upwards" is (0,1,0)..
-		transform.Translate(0f, 1f, 0f);
-		//Increment counter
-		gTileCount++;
+			//Instantiate a floorPrefab clone at current position;
+			Instantiate(floorPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
+			//Move 1 unit "upwards" based on this object's local rotation (e.g. with rotation 0,0,0 "upwards" is (0,1,0)..
+			transform.Translate(0f, 1f, 0f);
+			//Increment counter
+			gTileCount++;
 
 			//Else:Destroy my game object; 
 			// self destruct if I've made enough tiles already
-		else if (gTileCount == 500)
+			
+		}
+		else if (gTileCount >= 500)
 		{
 			Destroy(gameObject);
 		}
 		//restart scene 
 		if (Input.GetKeyDown(KeyCode.R))
 		{
+			Debug.Log("you restarted the scene!");
+			gTileCount = 0;
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
+
+
 	}
 
 
