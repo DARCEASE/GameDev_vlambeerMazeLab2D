@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 // instructions for students: clone this project, open the VlambeerLabScene, and then start working on this script
 // based on: Vlambeer's level generation system for Nuclear Throne https://indienova.com/u/root/blogread/1766
@@ -34,7 +35,7 @@ public class FloorMaker : MonoBehaviour
 			{
 				transform.Rotate(0f, 0f, -90f);
 			}
-			else if (randNum >= 0.95f && randNum <= 1.0f) // Else if number is 0.99f-1.0f, then instantiate a floorMakerPrefab clone at my current position;
+			else if (randNum >= 0.75f && randNum <= 1.0f) // Else if number is 0.99f-1.0f, then instantiate a floorMakerPrefab clone at my current position;
 			{
 
 				Instantiate(floorMakerPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
@@ -51,22 +52,22 @@ public class FloorMaker : MonoBehaviour
 			// self destruct if I've made enough tiles already
 			
 		}
-		else if (gTileCount >= 500)
+		else if (gTileCount >= 700)
 		{
 			Destroy(gameObject);
 		}
 		//restart scene 
-		if (Input.GetKeyDown(KeyCode.R))
-		{
+		
+		
+
+
+	}
+	public void Regenerate()
+	{
 			Debug.Log("you restarted the scene!");
 			gTileCount = 0;
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
-
-
-	}
-
-
 
 }
 

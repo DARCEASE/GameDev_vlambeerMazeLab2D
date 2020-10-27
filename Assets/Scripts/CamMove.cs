@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CamMove : MonoBehaviour
@@ -11,6 +12,9 @@ public class CamMove : MonoBehaviour
     private float targetZoom;
     private float zoomFactor = 3f;
     private float zoomLerpSpeed = 10;
+   // public bool zoomStartActive = false;
+   // public Vector3[] activeZoomTarget;
+   // public float activeZoomSpd;
   //  public Transform camTransform;
    // public Transform camFocusTarget;
     //public FloorMaker fMaker;
@@ -18,6 +22,8 @@ public class CamMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //cam = Camera.main;
+        //zoomStartActive = true;
         targetZoom = cam.orthographicSize;
         //camFocusTarget = fMaker.floorMaker.transform;
         
@@ -34,6 +40,17 @@ public class CamMove : MonoBehaviour
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
         targetZoom = Mathf.Clamp(targetZoom, 4.5f, 20f);
     }
+   /*private void LateUpdate()
+    {
+        if (zoomStartActive == true)
+        {
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 3, activeZoomSpd);
+        }
+        else
+        {
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 5, activeZoomSpd);
+        }
+    }*/
 
     private void PanCamera()
     {
